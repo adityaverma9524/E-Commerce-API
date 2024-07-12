@@ -2,4 +2,11 @@ ProductController~
     Get Product
     Add a Product
     Get one Product
-    Rate Product.
+    Filter Product
+    Rate Product
+    Add items to cart
+    Get items from cart
+
+UserController~
+    Sign Up - Email, Name, Password, TypeOfUser(costumer, seller) 
+    Sign In - Email, Password
