@@ -1,15 +1,8 @@
+import { ApplicationError } from '../../error-handler/ApplicationError.js';
 import UserModel from '../user/user.model.js';
 
 export default class ProductModel {
-  constructor(
-    id,
-    name,
-    desc,
-    price,
-    imageUrl,
-    category,
-    sizes
-  ) {
+  constructor(id, name, desc, imageUrl, category, price, sizes) {
     this.id = id;
     this.name = name;
     this.desc = desc;
@@ -56,14 +49,14 @@ export default class ProductModel {
       (u) => u.id == userID
     );
     if(!user){
-      return "User not found";
+      throw new ApplicationError("User not found", 404);
     }
 
     // Validate Product
     const product = products.find(
       (p) => p.id == productID);
       if(!product){
-        return "Product not found";
+        throw new ApplicationError("Product not found", 400) ;
       }
 
       // 2. Check if there are any ratings and if not then add ratings array.
@@ -76,7 +69,7 @@ export default class ProductModel {
       }
       else{
         // 3. Check if user rating is already available.
-        const existingRatingIndex = product.rating.findIndex(
+        const existingRatingIndex = product.ratings.findIndex(
           (r) => r.userID == userID
         );
         if(existingRatingIndex >= 0){
