@@ -1,8 +1,10 @@
 // 1. Import Exprerss
+import "./env.js";
+
 import express from 'express';
-import './env.js'; 
 import swagger from 'swagger-ui-express';
 import cors from 'cors';
+
 
 import productRouter from './src/features/product/product.routes.js';
 import userRouter from './src/features/user/user.routes.js';
@@ -10,11 +12,13 @@ import jwtAuth from './src/middlewares/jwt.middleware.js';
 import cartRouter from './src/features/cartItems/cartItems.routes.js';
 import apiDocs from './swagger.json' with {type: 'json'};
 import loggerMiddleware from './src/middlewares/logger.middleware.js';
-import { ApplicationError } from './src/error-handler/ApplicationError.js';
-import {connectToMongoDB} from './src/Configuration/mongodb.js';
-
+import { ApplicationError } from './src/error-handler/applicationError.js';
+import {connectToMongoDB} from './src/config/mongodb.js';
 // 2. Create Server
 const server = express();
+
+// load all the environment variables in application
+
 
 // CORS policy configuration
 
@@ -47,7 +51,7 @@ server.use(loggerMiddleware);
 
 server.use(
   '/api/products',
-  jwtAuth,
+
   productRouter
 );
 server.use("/api/cartItems", jwtAuth, cartRouter);
@@ -82,6 +86,7 @@ server.use((req, res)=>{
 // 5. Specify port.
 server.listen(3200, ()=>{
   console.log('Server is running at 3200');
-  connectToMongoDB(); 
+  connectToMongoDB();
+
 });
 

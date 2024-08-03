@@ -11,3 +11,18 @@ Remove items from cart. - Done.
 UserController
 Signup - Email, Name, Password, TypeOfUser(customer, seller) - Done.
 Signin - (Email, Password) - Done.
+
+
+Folder Structure
+Route configuration
+Creating APIs
+Different API Methods
+Middlewares
+Route parameters
+Query parameters
+Testing api using postman
+Securing Api using jwt token
+Documenting API using using swagger
+CORS
+Logging
+Error Handling
